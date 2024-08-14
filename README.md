@@ -1,5 +1,7 @@
 # Real-Time Code Editor(i call it Simultaneous Code Editor)
 
+https://github.com/user-attachments/assets/60b267e3-dec6-4615-b54e-66da467efd1b
+
 Welcome to the Real-Time Code Editor project! This application is designed to provide a collaborative coding environment where multiple users can edit code simultaneously. It leverages WebSockets for real-time communication and offers a sleek dark theme for a modern coding experience.
 
 ## Features
@@ -21,4 +23,4 @@ Welcome to the Real-Time Code Editor project! This application is designed to pr
 Go check this website on https://simultaneous-code-editor.vercel.app/
 
 
-https://github.com/user-attachments/assets/60b267e3-dec6-4615-b54e-66da467efd1b
+
