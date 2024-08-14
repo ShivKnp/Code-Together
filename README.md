@@ -21,6 +21,3 @@ Welcome to the Real-Time Code Editor project! This application is designed to pr
 - **uuid**: A library for generating unique identifiers.
 
 Go check this website on https://simultaneous-code-editor.vercel.app/
-
-
-https://github.com/user-attachments/assets/bdd319d3-f05e-4f74-a800-998d01767211
