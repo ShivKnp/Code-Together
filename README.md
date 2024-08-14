@@ -1,7 +1,4 @@
-# Simultaneous_CodeEditor
-
-
-# Real-Time Code Editor
+# Real-Time Code Editor(i call it Simultaneous Code Editor)
 
 Welcome to the Real-Time Code Editor project! This application is designed to provide a collaborative coding environment where multiple users can edit code simultaneously. It leverages WebSockets for real-time communication and offers a sleek dark theme for a modern coding experience.
 
