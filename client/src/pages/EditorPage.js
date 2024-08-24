@@ -127,7 +127,7 @@ const EditorPage = () => {
               Room ID
             </button>
             <button
-              className="w-full bg-green-500 hover:bg-green-600 text-gray-100 py-2 rounded-md"
+              className="w-full bg-green-500 hover:bg-red-600 text-gray-100 py-2 rounded-md"
               onClick={leaveRoom}
             >
               Leave
