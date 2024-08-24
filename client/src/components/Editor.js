@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Codemirror from 'codemirror';
 import 'codemirror/lib/codemirror.css';
-import 'codemirror/theme/dracula.css'; 
-import 'codemirror/theme/material.css'; 
-import 'codemirror/theme/eclipse.css'; 
-import 'codemirror/theme/solarized.css'; 
-import 'codemirror/theme/cobalt.css'; 
-import 'codemirror/theme/monokai.css'; 
-import 'codemirror/theme/seti.css'; 
-import 'codemirror/theme/rubyblue.css'; 
+import 'codemirror/theme/dracula.css';
+import 'codemirror/theme/material.css';
+import 'codemirror/theme/eclipse.css';
+import 'codemirror/theme/solarized.css';
+import 'codemirror/theme/cobalt.css';
+import 'codemirror/theme/monokai.css';
+import 'codemirror/theme/seti.css';
+import 'codemirror/theme/rubyblue.css';
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/addon/edit/closetag';
 import 'codemirror/addon/edit/closebrackets';
@@ -20,38 +20,50 @@ const Editor = ({ socketRef, roomId, onCodeChange, isFullScreen, toggleFullScree
     const [fontSize, setFontSize] = useState('18px');
 
     useEffect(() => {
-        async function init() {
-            editorRef.current = Codemirror.fromTextArea(
-                document.getElementById('realtimeEditor'),
-                {
-                    mode: { name: 'javascript', json: true },
-                    theme: theme,
-                    autoCloseTags: true,
-                    autoCloseBrackets: true,
-                    lineNumbers: true,
-                }
-            );
-            editorRef.current.getWrapperElement().style.fontSize = fontSize;
+        editorRef.current = Codemirror.fromTextArea(
+            document.getElementById('realtimeEditor'),
+            {
+                mode: { name: 'javascript', json: true },
+                theme: theme,
+                autoCloseTags: true,
+                autoCloseBrackets: true,
+                lineNumbers: true,
+                lineWrapping: true,
+            }
+        );
 
-            editorRef.current.on('change', (instance, changes) => {
-                const { origin } = changes;
-                const code = instance.getValue();
-                onCodeChange(code);
-                if (origin !== 'setValue') {
-                    socketRef.current.emit(ACTIONS.CODE_CHANGE, {
-                        roomId,
-                        code,
-                    });
-                }
-            });
+        editorRef.current.getWrapperElement().style.fontSize = fontSize;
+
+        editorRef.current.on('change', (instance, changes) => {
+            const { origin } = changes;
+            const code = instance.getValue();
+            onCodeChange(code);
+
+            if (origin !== 'setValue') {
+                socketRef.current.emit(ACTIONS.CODE_CHANGE, {
+                    roomId,
+                    code,
+                });
+            }
+        });
+    }, []);
+
+    useEffect(() => {
+        if (editorRef.current) {
+            editorRef.current.setOption('theme', theme);
         }
-        init();
-    }, [theme, fontSize]);
+    }, [theme]);
+
+    useEffect(() => {
+        if (editorRef.current) {
+            editorRef.current.getWrapperElement().style.fontSize = fontSize;
+        }
+    }, [fontSize]);
 
     useEffect(() => {
         if (socketRef.current) {
             socketRef.current.on(ACTIONS.CODE_CHANGE, ({ code }) => {
-                if (code !== null) {
+                if (code !== null && code !== editorRef.current.getValue()) {
                     editorRef.current.setValue(code);
                 }
             });
@@ -72,10 +84,8 @@ const Editor = ({ socketRef, roomId, onCodeChange, isFullScreen, toggleFullScree
 
     return (
         <div className={`relative ${isFullScreen ? 'w-full h-full' : 'p-2'}`}>
-            <div style={{ marginBottom:'10px' }}
-                className={`flex items-center space-x-8 z-10 ${
-                    isFullScreen ? 'w-auto' : 'w-full'
-                }`}
+            <div style={{ marginBottom: '10px' }}
+                className={`flex items-center space-x-8 z-10 ${isFullScreen ? 'w-auto' : 'w-full'}`}
             >
                 {!isFullScreen && (
                     <>
@@ -103,6 +113,7 @@ const Editor = ({ socketRef, roomId, onCodeChange, isFullScreen, toggleFullScree
                                 <option value="rubyblue">RubyBlue</option>
                             </select>
                         </div>
+
                         <div className="flex items-center">
                             <label 
                                 htmlFor="font-size-select" 
@@ -125,6 +136,7 @@ const Editor = ({ socketRef, roomId, onCodeChange, isFullScreen, toggleFullScree
                         </div>
                     </>
                 )}
+
                 <button
                     onClick={toggleFullScreen}
                     className="p-2 bg-blue-600 hover:bg-blue-500 text-white rounded text-xs"
@@ -132,6 +144,7 @@ const Editor = ({ socketRef, roomId, onCodeChange, isFullScreen, toggleFullScree
                     {isFullScreen ? 'Exit Full Screen' : 'Full Screen'}
                 </button>
             </div>
+
             <textarea 
                 id="realtimeEditor" 
                 className={`w-full h-full border rounded ${isFullScreen ? 'p-0' : 'p-2'}`} 
