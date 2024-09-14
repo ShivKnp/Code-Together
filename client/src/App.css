@@ -3,109 +3,41 @@
 @tailwind components;
 @tailwind utilities;
 
-.homePageWrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    height: 100vh;
-}
-
-.formWrapper {
-    background: #282a36;
-    padding: 20px;
-    border-radius: 10px;
-    width: 400px;
-    max-width: 90%;
-}
-
-footer {
-    position: fixed;
-    bottom: 0;
-}
-
-footer a {
-    color: #4aee88;
-}
-
-.inputGroup {
-    display: flex;
-    flex-direction: column;
-}
-
-.mainLabel {
-    margin-bottom: 20px;
-    margin-top: 0;
-}
-
-.homePageLogo {
-    height: 80px;
-    margin-bottom: 30px;
-}
-
-.inputBox {
-    padding: 10px;
-    border-radius: 5px;
-    outline: none;
-    border: none;
-    margin-bottom: 14px;
-    background: #eee;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.btn {
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-}
-
-.joinBtn,
-.leaveBtn {
-    background: #4aed88;
-    width: 100px;
-    margin-left: auto;
-}
-
-.joinBtn:hover,
-.leaveBtn:hover {
-    background: #2b824c;
-}
-
-.createInfo {
-    margin: 0 auto;
-    margin-top: 20px;
-}
-
-.createNewBtn {
-    color: #4aed88;
-    text-decoration: none;
-    border-bottom: 1px solid #4aed88;
-    transition: all 0.3s ease-in-out;
-}
-
-.createNewBtn:hover,
-footer a:hover {
-    color: #368654;
-    border-color: #368654;
-}
-
-.mainWrap {
-    display: grid;
-    grid-template-columns: 230px 1fr;
-}
-
 .aside {
     background: #1c1e29;
-    padding: 16px;
-    color: #fff;
     display: flex;
     flex-direction: column;
+    resize: both;
+    overflow: auto;
 }
+
+/* Desktop: Larger screens */
+@media (min-width: 768px) {
+    .aside {
+        width: 230px;          
+        height: auto;         
+        min-width: 12%;      
+        max-width: 30%;     
+        min-height: 100%;     
+        max-height: 100%;     
+    }
+}
+
+/* Mobile: Smaller screens */
+@media (max-width: 767px) {
+    .aside {
+        width: 100%;           
+        height: auto;         
+        min-width: 100%;       
+        max-width: 100%;       
+        min-height: 30%;     
+        max-height: 80vh;      
+        resize: vertical;      
+    }
+}
+
+
+
 .asideInner {
     flex: 1;
 }
@@ -114,17 +46,40 @@ footer a:hover {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 3px;
+    gap: 10px; 
+}
+
+/* Grid layout for larger screens */
+@media (min-width: 768px) {
+    .clientsList {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+        gap: 10px; 
+    }
+}
+
+/* List layout for smaller screens */
+@media (max-width: 767px) {
+    .clientsList {
+        display: flex;
+        flex-direction: column;
+        gap: 10px; 
+    }
 }
 
 .client {
     display: flex;
     align-items: center;
     flex-direction: column;
-    font-weight: bold;
+    background-color: #1c1e29;
+    border: #424242,solid;
+    padding: 10px; 
+    border-radius: 13px;
+    text-align: center; 
 }
+
 .userName {
-    margin-top: 10px;
+    margin-top: 1vh;
 }
 
 .logo {
@@ -136,10 +91,6 @@ footer a:hover {
     height: 60px;
 }
 
-.leaveBtn {
-    width: 100%;
-    margin-top: 20px;
-}
 .CodeMirror {
     min-height: calc(100vh - 20px);
     font-size: 20px;
@@ -148,9 +99,44 @@ footer a:hover {
     width: 100%;
     overflow: scroll;
      margin-right: -10000000000000000000000000000000000000000000000000000px;
-    
-    
-   
 }
 
 
+/* Button Container Styles */
+.buttonContainer {
+    margin-top: 16px; 
+    display: flex;
+    flex-direction: column;
+    gap: 8px; 
+  }
+  
+  /* Room ID Button */
+  .roomIdButton {
+    width: 100%;
+    background-color: #3b82f6; 
+    color: #f3f4f6; 
+    padding: 8px; 
+    border-radius: 13px; 
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .roomIdButton:hover {
+    background-color: #2563eb; 
+    transform: scale(1.05); 
+  }
+  
+  /* Leave Button */
+  .leaveButton {
+    width: 100%;
+    background-color: #10b981; 
+    color: #f3f4f6; 
+    padding: 8px; 
+    border-radius: 13px; 
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .leaveButton:hover {
+    background-color: #dc2626; 
+    transform: scale(1.05); 
+  }
+  
