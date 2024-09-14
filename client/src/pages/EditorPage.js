@@ -119,20 +119,20 @@ const EditorPage = () => {
               ))
             )}
           </div>
-          <div className="space-y-2 mt-4">
-            <button
-              className="w-full bg-blue-500 hover:bg-blue-600 text-gray-100 py-2 rounded-md"
-              onClick={copyRoomId}
-            >
-              Room ID
-            </button>
-            <button
-              className="w-full bg-green-500 hover:bg-red-600 text-gray-100 py-2 rounded-md"
-              onClick={leaveRoom}
-            >
-              Leave
-            </button>
-          </div>
+           <div className="buttonContainer">
+    <button
+      className="roomIdButton"
+      onClick={copyRoomId}
+    >
+      Room ID
+    </button>
+    <button
+      className="leaveButton"
+      onClick={leaveRoom}
+    >
+      Leave
+    </button>
+</div>
         </div>
       )}
       <div className={`editorWrap flex-1 relative ${isFullScreen ? 'p-0' : 'p-2'}`}>
