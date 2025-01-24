@@ -7,5 +7,5 @@ export const initSocket = async () => {
         timeout: 10000,
         transports: ['websocket'],
     };
-    return io(process.env.REACT_APP_BACKEND_URL || "https://simultaneous-codeeditor.onrender.com", options);
+    return io(process.env.REACT_APP_BACKEND_URL || "code-together-production.up.railway.app", options);
 };
