@@ -122,7 +122,7 @@ const Home = () => {
       <footer className="mt-8 text-center text-gray-500">
         Created by&nbsp;
         <a
-          href="https://github.com/Fearman99"
+          href="https://github.com/ShivKnp"
           className="text-indigo-600 hover:underline"
         >
           Shivansh Tiwari
