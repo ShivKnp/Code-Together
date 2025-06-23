@@ -7,5 +7,5 @@ export const initSocket = async () => {
         timeout: 10000,
         transports: ['websocket'],
     };
-    return io("code-together-production.up.railway.app", options);
+    return io("https://simultaneous-codeeditor.onrender.com", options);
 };
